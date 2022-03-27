@@ -13,8 +13,6 @@ const App = () => {
     });
   }, []);
 
-  console.log(tfgs)
-
   return (
     <div>
       <h1>Hola mundo!!!</h1>
