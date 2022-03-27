@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react";
-
-import { getAllTfgs } from "../services/TFGApi";
+import Login from "./Login";
+import StudentHome from "./student/StudentHome"
+import { useState } from "react";
 
 const App = () => {
-  const [tfgs, setTfgs] = useState([]);
-
-  useEffect(() => {
-    getAllTfgs().then((response) => {
-      if (response.status === 200) {
-        setTfgs(response.data)
-      }
-    });
-  }, []);
-
-  return (
-    <div>
-      <h1>Hola mundo!!!</h1>
-      {tfgs.map(({id, title}) => (
-          <p key={id}>TFG {id} con titulo {title}</p>   
-        ))
-      }
-    </div>
-  );
+  const [isLogged, setIsLogged] = useState(false);
+  const [student, setStudent] = useState();
+  
+  return <>{isLogged ? <StudentHome student={student}/> : <Login setIsLogged={setIsLogged} setStudent={setStudent}/>}</>;
 };
-
 export default App;

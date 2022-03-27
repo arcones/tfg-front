@@ -30,3 +30,15 @@ export const getAllTfgs = () => {
 
   return axios.get(API + "/tfgs", config);
 };
+
+export const getTfgsByStudentId = (studentId) => {
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "http://localhost:8080",
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+  return axios.get(API + `/tfgs/students/${studentId}`, config);
+};

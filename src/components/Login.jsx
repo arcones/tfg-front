@@ -1,3 +1,4 @@
+import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
@@ -5,18 +6,23 @@ import TextField from "@mui/material/TextField";
 import { checkCredentials } from "../services/TFGApi";
 import { useState } from "react";
 
-const MainMenu = () => {
+const Login = ({ setIsLogged, setStudent }) => {
   const [user, setUser] = useState();
   const [password, setPassword] = useState();
+  const [wrongPassword, setWrongPassword] = useState(false);
 
-  const checkCrentials = (inputUser, inputPassword) => {
-    checkCredentials(user, password).then((response) => {
-      if (response.status === 200) {
-        console.log(`La usuaria es ${user} y su contraseña es ${password}`);
-      }
-    }).catch(e => {
-        console.log("No se encuenta la usuaria")
-    });
+  const checkCrentials = () => {
+    checkCredentials(user, password)
+      .then((response) => {
+        if (response.status === 200) {
+          setStudent(response.data);
+          setIsLogged(true);
+        }
+      })
+      .catch((e) => {
+        console.error("No se encuenta la usuaria");
+        setWrongPassword(true);
+      });
   };
 
   return (
@@ -25,6 +31,9 @@ const MainMenu = () => {
       <Grid item xs>
         <Stack spacing={2}>
           <div>TFGs</div>
+          {wrongPassword && (
+            <Alert severity="error">Las credenciales son incorrectas</Alert>
+          )}
           <TextField
             label="Usuaria"
             variant="outlined"
@@ -51,4 +60,4 @@ const MainMenu = () => {
   );
 };
 
-export default MainMenu;
+export default Login;
