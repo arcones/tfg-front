@@ -14,7 +14,6 @@ const App = () => {
         default:
             return <Login setLoggedUser={setLoggedUser}/>
     }
-
 }
 
 export default App;
