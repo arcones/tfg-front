@@ -3,61 +3,60 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
-import { checkCredentials } from "../services/TFGApi";
-import { useState } from "react";
+import {checkCredentials} from "../services/TFGApi";
+import {useState} from "react";
 
-const Login = ({ setIsLogged, setStudent }) => {
-  const [user, setUser] = useState();
-  const [password, setPassword] = useState();
-  const [wrongPassword, setWrongPassword] = useState(false);
+const Login = ({setLoggedUser}) => {
+    const [user, setUser] = useState();
+    const [password, setPassword] = useState();
+    const [wrongPassword, setWrongPassword] = useState(false);
 
-  const checkCrentials = () => {
-    checkCredentials(user, password)
-      .then((response) => {
-        if (response.status === 200) {
-          setStudent(response.data);
-          setIsLogged(true);
-        }
-      })
-      .catch((e) => {
-        console.error("No se encuenta la usuaria");
-        setWrongPassword(true);
-      });
-  };
+    const searchUser = () => {
+        checkCredentials(user, password)
+            .then((response) => {
+                setLoggedUser(response.data);
+            })
+            .catch((e) => {
+                setWrongPassword(true);
+            });
+    };
 
-  return (
-    <Grid container>
-      <Grid item xs></Grid>
-      <Grid item xs>
-        <Stack spacing={2}>
-          <div>TFGs</div>
-          {wrongPassword && (
-            <Alert severity="error">Las credenciales son incorrectas</Alert>
-          )}
-          <TextField
-            label="Usuaria"
-            variant="outlined"
-            onChange={(event) => setUser(event.target.value)}
-          />
-          <TextField
-            label="Contraseña"
-            variant="outlined"
-            type="password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <Button
-            onClick={() => {
-              checkCrentials();
-            }}
-            variant="contained"
-          >
-            Login
-          </Button>
-        </Stack>
-      </Grid>
-      <Grid item xs></Grid>
-    </Grid>
-  );
+    return (
+        <Grid container>
+            <Grid item xs/>
+            <Grid item xs>
+                <Stack spacing={2}>
+                    <div>TFGs</div>
+                    {wrongPassword && (
+                        <Alert severity="error">Las credenciales son incorrectas</Alert>
+                    )}
+                    <TextField
+                        label="Usuaria"
+                        variant="outlined"
+                        onChange={(event) => {
+                            setUser(event.target.value)
+                        }}
+                        onFocus={() => setWrongPassword(false)}
+                    />
+                    <TextField
+                        label="Contraseña"
+                        variant="outlined"
+                        type="password"
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                    <Button
+                        onClick={() => {
+                            searchUser();
+                        }}
+                        variant="contained"
+                    >
+                        Login
+                    </Button>
+                </Stack>
+            </Grid>
+            <Grid item xs/>
+        </Grid>
+    );
 };
 
 export default Login;

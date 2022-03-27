@@ -1,44 +1,43 @@
 import axios from "axios";
 
-const API = "http://localhost:8080/api";
+const BASE_PATH = "http://localhost:8080";
 const TIMEOUT = 5000;
 
 export const checkCredentials = (user, password) => {
   const config = {
     headers: {
-      "Access-Control-Allow-Origin": "http://localhost:8080",
+      "Access-Control-Allow-Origin": BASE_PATH,
       "Content-Type": "application/json",
       Accept: "application/json",
-      User: user,
+      Mail: user,
       Password: password
     },
     timeout: TIMEOUT,
   };
 
-  return axios.get(API + "/students/login", config);
-};
-
-export const getAllTfgs = () => {
-  const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "http://localhost:8080",
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    timeout: TIMEOUT,
-  };
-
-  return axios.get(API + "/tfgs", config);
+  return axios.get(BASE_PATH + "/api/users/login", config);
 };
 
 export const getTfgsByStudentId = (studentId) => {
   const config = {
     headers: {
-      "Access-Control-Allow-Origin": "http://localhost:8080",
+      "Access-Control-Allow-Origin": BASE_PATH,
       "Content-Type": "application/json",
       Accept: "application/json",
     },
     timeout: TIMEOUT,
   };
-  return axios.get(API + `/tfgs/students/${studentId}`, config);
+  return axios.get(BASE_PATH + `/api/tfgs/students/${studentId}`, config);
+};
+
+export const getTfgsByDirectorId = (directorId) => {
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": BASE_PATH,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+  return axios.get(BASE_PATH + `/api/tfgs/director/${directorId}`, config);
 };
