@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { checkCredentials } from "../services/TFGApi";
 import { useState } from "react";
+import Typography from "@mui/material/Typography";
 
 const Login = ({ setLoggedUser }) => {
   const [user, setUser] = useState();
@@ -26,12 +27,14 @@ const Login = ({ setLoggedUser }) => {
       <Grid item xs />
       <Grid item xs>
         <Stack spacing={2}>
-          <div>TFGs</div>
+          <Typography variant="h6" component="h6" align="center">
+            Gestión de TFGs 🧑🏾‍🎓 👩🏽‍🏫
+          </Typography>
           {wrongPassword && (
             <Alert severity="error">Las credenciales son incorrectas</Alert>
           )}
           <TextField
-            label="Usuaria"
+            label="Usuaria 👩🏾"
             variant="outlined"
             onChange={(event) => {
               setUser(event.target.value);
@@ -39,7 +42,7 @@ const Login = ({ setLoggedUser }) => {
             onFocus={() => setWrongPassword(false)}
           />
           <TextField
-            label="Contraseña"
+            label="Contraseña 🔑"
             variant="outlined"
             type="password"
             onChange={(event) => setPassword(event.target.value)}
@@ -51,7 +54,7 @@ const Login = ({ setLoggedUser }) => {
             }}
             variant="contained"
           >
-            Login
+            Login 🔐
           </Button>
         </Stack>
       </Grid>
