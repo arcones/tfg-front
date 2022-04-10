@@ -16,7 +16,7 @@ const Login = ({setLoggedUser}) => {
             .then((response) => {
                 setLoggedUser(response.data);
             })
-            .catch((e) => {
+            .catch(() => {
                 setWrongPassword(true);
             });
     };
@@ -43,6 +43,7 @@ const Login = ({setLoggedUser}) => {
                         variant="outlined"
                         type="password"
                         onChange={(event) => setPassword(event.target.value)}
+                        onFocus={() => setWrongPassword(false)}
                     />
                     <Button
                         onClick={() => {
