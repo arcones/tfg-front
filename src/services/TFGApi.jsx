@@ -10,7 +10,7 @@ export const checkCredentials = (user, password) => {
       "Content-Type": "application/json",
       Accept: "application/json",
       Mail: user,
-      Password: password
+      Password: password,
     },
     timeout: TIMEOUT,
   };
