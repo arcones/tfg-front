@@ -42,6 +42,18 @@ export const getUserInfo = (id) => {
   return axios.get(BASE_PATH + `/api/users/${id}`, config);
 };
 
+export const getDirectorsList = () => {
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": BASE_PATH,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+  return axios.get(BASE_PATH + `/api/users?role=Director`, config);
+};
+
 export const getTfgsByDirectorId = (directorId) => {
   const config = {
     headers: {

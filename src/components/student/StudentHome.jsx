@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 
 import TFGDetails from "./TFGDetails";
 import TFGRequestForm from "./TFGRequestForm";
-import { getTfgsByStudentId, getUserInfo } from "../../services/TFGApi";
+import {
+  getDirectorsList,
+  getTfgsByStudentId,
+  getUserInfo,
+} from "../../services/TFGApi";
 
 const StudentHome = ({ student }) => {
   const [tfgs, setTfgs] = useState([]);
   const [prettyTfgs, setPrettyTfgs] = useState([]);
+  const [newTfgRequest, setNewTfgRequest] = useState(false);
+  const [availableDirectors, setAvailableDirectors] = useState(false);
 
   useEffect(() => {
-    getTfgsByStudentId(student.id).then((response) => {
-      if (response.status === 200) {
-        setTfgs(response.data);
-      }
-    });
+    getTfgsByStudentId(student.id).then((response) => setTfgs(response.data));
+    getDirectorsList().then((response) => setAvailableDirectors(response.data));
   }, [student]);
 
   function transformTFGStatusInSentence(status) {
@@ -54,10 +57,17 @@ const StudentHome = ({ student }) => {
 
   return (
     <>
-      {prettyTfgs.length > 0 ? (
-        <TFGDetails prettifiedTfgs={prettyTfgs} student={student} />
+      {prettyTfgs.length > 0 && !newTfgRequest ? (
+        <TFGDetails
+          prettifiedTfgs={prettyTfgs}
+          student={student}
+          setNewTfgRequest={setNewTfgRequest}
+        />
       ) : (
-        <TFGRequestForm />
+        <TFGRequestForm
+          availableDirectors={availableDirectors}
+          student={student}
+        />
       )}
     </>
   );

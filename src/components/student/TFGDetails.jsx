@@ -12,7 +12,7 @@ import { Container } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-const TFGDetails = ({ student, prettifiedTfgs }) => {
+const TFGDetails = ({ student, prettifiedTfgs, setNewTfgRequest }) => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: "deeppink",
@@ -77,7 +77,7 @@ const TFGDetails = ({ student, prettifiedTfgs }) => {
         {allTfgsRejected() && (
           <Button
             onClick={() => {
-              console.log("hola mundo");
+              setNewTfgRequest(true);
             }}
             variant="contained"
           >
