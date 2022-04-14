@@ -10,6 +10,5 @@ Once launched :rocket:, you can interact with it :arrows_counterclockwise: [here
 
 ## TODOs
 
-- Problem with TFG table and director names
 - Favicon not loading
-- Emojis in browsers that are not firefox
+- Emojis in browsers that are not firefox (try in another computer)
