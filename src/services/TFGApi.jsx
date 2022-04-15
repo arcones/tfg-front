@@ -56,16 +56,18 @@ export const getDirectorsList = () => {
 
 export const createTfgRequest = (tfgDetails) => {
   const config = {
+    method: "post",
+    url: BASE_PATH + `/api/tfgs`,
     headers: {
       "Access-Control-Allow-Origin": BASE_PATH,
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-    data: tfgDetails, //TODO no rula
+    data: tfgDetails,
     timeout: TIMEOUT,
   };
-  console.log(`EL BODY QUE MANDO ES ${JSON.stringify(config.data)}`);
-  return axios.post(BASE_PATH + `/api/tfgs`, config);
+
+  return axios(config);
 };
 
 export const getTfgsByDirectorId = (directorId) => {
