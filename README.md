@@ -12,3 +12,5 @@ Once launched :rocket:, you can interact with it :arrows_counterclockwise: [here
 
 - Favicon not loading
 - Emojis in browsers that are not firefox (try in another computer)
+- Mejorar los condicionales. Cada bloque que se presenta condicionalmente ha de tener solo una etiqueta externa!
+- Juntar los styleTableRow y demás en una sola clase y desde ahí reutilizar

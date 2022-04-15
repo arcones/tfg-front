@@ -71,12 +71,12 @@ const TFGRequestForm = ({ student, availableDirectors }) => {
       )}
       {tfgRequested && (
         <Typography variant="subtitle1" component="div">
-          Su TFG se ha solicitado correctamente
+          Su TFG se ha solicitado correctamente 🙌
         </Typography>
       )}
       {tfgRequestError && (
         <Typography variant="subtitle1" component="div">
-          Ha habido algún problema al solicitar su TFG
+          Ha habido algún problema al solicitar su TFG 😭
         </Typography>
       )}
     </Stack>
