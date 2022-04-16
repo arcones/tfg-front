@@ -2,38 +2,17 @@ import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import { styled } from "@mui/material/styles";
+import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { StyledTableCell } from "../common/StyledTableCell";
+import { StyledTableRow } from "../common/StyledTableRow";
 
-const TFGDetails = ({ student, prettifiedTfgs, setNewTfgRequest }) => {
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "deeppink",
-      color: theme.palette.common.white,
-      fontWeight: "bolder",
-      fontSize: 18,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
-
+const TFGRequestsDetails = ({ student, prettifiedTfgs, setNewTfgRequest }) => {
   function allTfgsRejected() {
     return prettifiedTfgs.every(
       (tfg) => tfg.status === "Solicitud de realización de TFG rechazada  ⛔"
@@ -88,4 +67,4 @@ const TFGDetails = ({ student, prettifiedTfgs, setNewTfgRequest }) => {
     </Container>
   );
 };
-export default TFGDetails;
+export default TFGRequestsDetails;

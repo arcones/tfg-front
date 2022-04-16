@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import TFGDetails from "./TFGDetails";
+import TFGRequestsDetails from "./TFGRequestsDetails";
 import TFGRequestForm from "./TFGRequestForm";
 import {
   getDirectorsList,
@@ -58,7 +58,7 @@ const StudentHome = ({ student }) => {
   return (
     <>
       {prettyTfgs.length > 0 && !newTfgRequest ? (
-        <TFGDetails
+        <TFGRequestsDetails
           prettifiedTfgs={prettyTfgs}
           student={student}
           setNewTfgRequest={setNewTfgRequest}

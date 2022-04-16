@@ -14,3 +14,7 @@ Once launched :rocket:, you can interact with it :arrows_counterclockwise: [here
 - Emojis in browsers that are not firefox (try in another computer)
 - Mejorar los condicionales. Cada bloque que se presenta condicionalmente ha de tener solo una etiqueta externa!
 - Juntar los styleTableRow y demás en una sola clase y desde ahí reutilizar
+- Analisis de código
+- Optimizar todas las clases!! del back y del front
+- Renombrar a tfgapi y tfgweb
+- Botón de deslogarte
