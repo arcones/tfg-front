@@ -35,6 +35,7 @@ const DirectorHome = ({ director }) => {
         (response) => response.data
       );
       prettifiedTfgs.push({
+        id: tfg.id,
         title: tfg.title,
         studentName: studentInfo.name,
         status: transformTFGStatusInSentence(tfg.status),

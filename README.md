@@ -18,3 +18,5 @@ Once launched :rocket:, you can interact with it :arrows_counterclockwise: [here
 - Optimizar todas las clases!! del back y del front
 - Renombrar a tfgapi y tfgweb
 - Botón de deslogarte
+- Sustituir divs chorras por diamantes
+- Prueba completa en colección de Postman

@@ -81,3 +81,33 @@ export const getTfgsByDirectorId = (directorId) => {
   };
   return axios.get(BASE_PATH + `/api/tfgs/director/${directorId}`, config);
 };
+
+export const acceptTfgRequest = (tfgId) => {
+  const config = {
+    method: "put",
+    url: BASE_PATH + `/api/tfgs/${tfgId}/accept`,
+    headers: {
+      "Access-Control-Allow-Origin": BASE_PATH,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+
+  return axios(config);
+};
+
+export const rejectTfgRequest = (tfgId) => {
+  const config = {
+    method: "put",
+    url: BASE_PATH + `/api/tfgs/${tfgId}/reject`,
+    headers: {
+      "Access-Control-Allow-Origin": BASE_PATH,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+
+  return axios(config);
+};
