@@ -28,7 +28,6 @@ const DirectorHome = ({ director }) => {
   }
 
   async function prettifyTfgs(tfgs) {
-    console.log("prettifyTfgs");
     let prettifiedTfgs = [];
     for (const tfg of tfgs) {
       const studentInfo = await getUserInfo(tfg.studentId).then(
