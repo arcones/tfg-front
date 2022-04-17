@@ -57,6 +57,17 @@ const TFGRequestsDetails = ({ prettyTfgs }) => {
                               .then((response) => {
                                 if (response.status === 202) {
                                   setRepliedToRequest(true);
+                                  setTableTfgs(
+                                    tableTfgs.map((tfg) =>
+                                      tfg.id === row.id
+                                        ? {
+                                            ...tfg,
+                                            status:
+                                              "Realización de TFG en curso ✅",
+                                          }
+                                        : tfg
+                                    )
+                                  );
                                 }
                               })
                               .catch(() => setReplyToRequestError(true));
@@ -73,8 +84,18 @@ const TFGRequestsDetails = ({ prettyTfgs }) => {
                             rejectTfgRequest(row.id)
                               .then((response) => {
                                 if (response.status === 202) {
-                                  // TODO HACER EL SET DEL ESTADO PARA ACTUALIZAR LA TABLE
                                   setRepliedToRequest(true);
+                                  setTableTfgs(
+                                    tableTfgs.map((tfg) =>
+                                      tfg.id === row.id
+                                        ? {
+                                            ...tfg,
+                                            status:
+                                              "Solicitud de realización de TFG rechazada  ⛔",
+                                          }
+                                        : tfg
+                                    )
+                                  );
                                 }
                               })
                               .catch(() => setReplyToRequestError(true));
@@ -94,22 +115,19 @@ const TFGRequestsDetails = ({ prettyTfgs }) => {
         </Table>
       </TableContainer>
       {repliedToRequest && replyToRequestError && (
-        //TODO LOS SNACKBARS NO VAN MUY ALLÁ
         <Snackbar
-          open={true}
-          autoHideDuration={5000}
-          // onClose={handleClose}
+          open={replyToRequestError}
+          autoHideDuration={3000}
+          onClose={() => setReplyToRequestError(false)}
           message="Hubo un error al actualizar el estado del TFG"
-          // action={action}
         />
       )}
       {repliedToRequest && !replyToRequestError && (
         <Snackbar
-          open={open}
-          autoHideDuration={5000}
-          // onClose={handleClose}
+          open={repliedToRequest}
+          autoHideDuration={3000}
+          onClose={() => setRepliedToRequest(false)}
           message="El estado del TFG se ha actualizado correctamente"
-          // action={action}
         />
       )}
     </div>
