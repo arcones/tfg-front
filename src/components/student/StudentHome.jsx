@@ -43,6 +43,7 @@ const StudentHome = ({ student }) => {
         (response) => response.data
       );
       prettifiedTfgs.push({
+        id: tfg.id,
         title: tfg.title,
         directorName: directorInfo.name,
         status: transformTFGStatusInSentence(tfg.status),

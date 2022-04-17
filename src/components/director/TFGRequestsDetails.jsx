@@ -10,7 +10,12 @@ import TableCell from "@mui/material/TableCell";
 import * as React from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import { acceptTfgRequest, rejectTfgRequest } from "../../services/TFGApi";
+import {
+  acceptTfgRead,
+  acceptTfgRequest,
+  rejectTfgRead,
+  rejectTfgRequest,
+} from "../../services/TFGApi";
 import Grid from "@mui/material/Grid";
 import { Snackbar } from "@mui/material";
 
@@ -46,7 +51,7 @@ const TFGRequestsDetails = ({ prettyTfgs }) => {
                 <TableCell>{row.studentName}</TableCell>
                 <TableCell>{row.status}</TableCell>
                 <TableCell>
-                  {row.status === "Solicitud pendiente de revisar ❓" ? (
+                  {row.status === "Solicitud pendiente de revisar ❓" && (
                     <Grid container spacing={2}>
                       <Grid item>
                         <Button
@@ -73,7 +78,7 @@ const TFGRequestsDetails = ({ prettyTfgs }) => {
                               .catch(() => setReplyToRequestError(true));
                           }}
                         >
-                          Aceptar
+                          Aceptar solicitud de TFG
                         </Button>
                       </Grid>
                       <Grid item>
@@ -101,13 +106,77 @@ const TFGRequestsDetails = ({ prettyTfgs }) => {
                               .catch(() => setReplyToRequestError(true));
                           }}
                         >
-                          Rechazar
+                          Rechazar solicitud de TFG
                         </Button>
                       </Grid>
                     </Grid>
-                  ) : (
-                    <Typography>No hay acciones pendientes 🍹</Typography>
                   )}
+                  {row.status ===
+                    "Solicitud de lectura y defensa pendiente de revisar ❓" && (
+                    <Grid container spacing={2}>
+                      <Grid item>
+                        <Button
+                          color="success"
+                          variant="contained"
+                          onClick={() => {
+                            acceptTfgRead(row.id)
+                              .then((response) => {
+                                if (response.status === 202) {
+                                  setRepliedToRequest(true);
+                                  setTableTfgs(
+                                    tableTfgs.map((tfg) =>
+                                      tfg.id === row.id
+                                        ? {
+                                            ...tfg,
+                                            status:
+                                              "Realización de lectura y defensa de TFG en curso  ✅",
+                                          }
+                                        : tfg
+                                    )
+                                  );
+                                }
+                              })
+                              .catch(() => setReplyToRequestError(true));
+                          }}
+                        >
+                          Aceptar lectura/defensa de TFG
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          color="error"
+                          variant="contained"
+                          onClick={() => {
+                            rejectTfgRead(row.id)
+                              .then((response) => {
+                                if (response.status === 202) {
+                                  setRepliedToRequest(true);
+                                  setTableTfgs(
+                                    tableTfgs.map((tfg) =>
+                                      tfg.id === row.id
+                                        ? {
+                                            ...tfg,
+                                            status:
+                                              "Solicitud de lectura y defensa de TFG rechazada  ⛔",
+                                          }
+                                        : tfg
+                                    )
+                                  );
+                                }
+                              })
+                              .catch(() => setReplyToRequestError(true));
+                          }}
+                        >
+                          Rechazar lectura/defensa de TFG
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  )}
+                  {row.status !== "Solicitud pendiente de revisar ❓" &&
+                    row.status !==
+                      "Solicitud de lectura y defensa pendiente de revisar ❓" && (
+                      <Typography>No hay acciones pendientes 🍹</Typography>
+                    )}
                 </TableCell>
               </StyledTableRow>
             ))}

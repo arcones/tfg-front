@@ -111,3 +111,48 @@ export const rejectTfgRequest = (tfgId) => {
 
   return axios(config);
 };
+
+export const requestTfgRead = (tfgId) => {
+  const config = {
+    method: "put",
+    url: BASE_PATH + `/api/tfgs/${tfgId}/readRequest`,
+    headers: {
+      "Access-Control-Allow-Origin": BASE_PATH,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+
+  return axios(config);
+};
+
+export const acceptTfgRead = (tfgId) => {
+  const config = {
+    method: "put",
+    url: BASE_PATH + `/api/tfgs/${tfgId}/acceptRead`,
+    headers: {
+      "Access-Control-Allow-Origin": BASE_PATH,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+
+  return axios(config);
+};
+
+export const rejectTfgRead = (tfgId) => {
+  const config = {
+    method: "put",
+    url: BASE_PATH + `/api/tfgs/${tfgId}/rejectRead`,
+    headers: {
+      "Access-Control-Allow-Origin": BASE_PATH,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    timeout: TIMEOUT,
+  };
+
+  return axios(config);
+};
